@@ -4,7 +4,7 @@
       <div class="hero-text">
         <h2>Um novo<br>conceito de <br><div class="highlight"><h2>Reciclagem</h2> <img src="@/assets/images/svg-reciclagem.svg" alt=""></div></h2>
         <p>Repense, Recicle e Reuse.</p>
-        <a href="#impressoes" class="catalog-button">Catálogo</a>
+        <a href="#impressoes" class="catalog-button">Impressões</a>
       </div>
       <div class="hero-image">
         <img src="@/assets/images/Bgirl.png" alt="Hero Image">
