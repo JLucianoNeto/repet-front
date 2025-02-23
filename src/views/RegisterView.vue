@@ -1,5 +1,17 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { register } from '@/api/index.js';
+
+
+
+function handleRegister() {
+  const response = register(username, name, email, matricula, phone, password);
+
+  if (!response) {
+    alert("Erro ao criar novo usuário");
+  }
+
+}
 </script>
 
 <template>
@@ -9,40 +21,43 @@ import { RouterLink } from 'vue-router';
 
         <div class="texto-cadastro">
           <h2>Seja</h2>
-          <h2>bem-vindo!</h2>          
+          <h2>bem-vindo!</h2>
           <br>
           <p>Cadastre-se agora</p>
           <p>ou</p>
           <p>Faça login</p>
         </div>
         <RouterLink class="button-2" to="login">Entrar</RouterLink>
-        
-        
+
+
       </div>
-      
+
       <div class="right">
-  
+
         <h2 id="h2-right">Crie sua conta</h2>
         <h3>Preencha seus dados</h3>
 
 
-        <form action="">
-
+        <form @submit.prevent="handleRegister()">
           <div class="inputs">
             <img src="@/assets/images/name-icon.svg" alt="email icon">
-            <input v-model.trim="name" type="name" name="name" id="" placeholder="Nome" required />
+            <input v-model.trim="name" type="text" name="name" id="" placeholder="Nome completo" required />
+          </div>
+          <div class="inputs">
+            <img src="@/assets/images/name-icon.svg" alt="username icon">
+            <input v-model.trim="username" type="text" name="username" id="" placeholder="Usuário" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/mail-icon.svg" alt="email icon">
             <input v-model.trim="email" type="email" name="email" id="" placeholder="Email" required />
           </div>
           <div class="inputs">
-            <img src="@/assets/images/book-icon.svg" alt="email icon">
-            <input v-model.trim="matricula" type="matricula" name="matricula" id="" placeholder="Matrícula" required />
+            <img src="@/assets/images/book-icon.svg" alt="matricula icon">
+            <input v-model.trim="matricula" type="text" name="matricula" id="" placeholder="Matrícula" required />
           </div>
           <div class="inputs">
-            <img src="@/assets/images/phone-icon.svg" alt="email icon">
-            <input v-model.trim="phone" type="phone" name="phone" id="" placeholder="Telefone" required />
+            <img src="@/assets/images/phone-icon.svg" alt="phone icon">
+            <input v-model.trim="phone" type="text" name="phone" id="" placeholder="Telefone" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/pass-icon.svg" alt="lock icon">
@@ -50,11 +65,11 @@ import { RouterLink } from 'vue-router';
           </div>
 
           <RouterLink class="button" to="register">Cadastrar</RouterLink>
-          
+
         </form>
 
       </div>
-      
+
     </div>
   </main>
 </template>
@@ -94,7 +109,7 @@ div.left {
   justify-content: center;
   width: 15vw;
 
-  & .texto-cadastro{
+  & .texto-cadastro {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,7 +128,7 @@ h2 {
   margin: 0 0 0 0;
 }
 
-#h2-right{
+#h2-right {
   color: var(--green);
 
 }
@@ -124,19 +139,19 @@ form {
   align-items: center;
   justify-content: center;
   gap: 0.7rem;
-  
+
 
   margin-left: 4rem;
   margin-right: 4rem;
-  
+
 }
 
 .button {
   text-transform: uppercase;
   width: 20rem;
   padding: .8rem;
-   margin-top: 2.5rem;
-  
+  margin-top: 2.5rem;
+
   background-color: var(--green);
   color: var(--white);
   border: none;
@@ -159,7 +174,7 @@ form {
 .button-2 {
   text-transform: uppercase;
   width: 14rem;
-  padding:1rem;
+  padding: 1rem;
   margin-top: 1.5rem;
   background-color: var(--green);
   color: var(--white);
@@ -182,7 +197,7 @@ img {
 }
 
 div.right {
-  
+
   background-color: var(--white);
   display: flex;
   flex-direction: column;
