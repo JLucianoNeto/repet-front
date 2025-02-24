@@ -1,5 +1,16 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import {login} from  '@/api/index.js';
+
+
+function handleLogin() {
+  const response = login(email,password);
+
+  if (!response){
+    alert("Email ou senha inválidos");
+  }
+}
+
 </script>
 
 <template>
@@ -8,14 +19,14 @@ import { RouterLink } from 'vue-router';
       <div class="left">
         <h2>Seja<br>bem-vindo!</h2>
 
-        <form>
+        <form @submit.prevent="handleLogin()">
           <div class="inputs">
             <img src="@/assets/images/mail-icon.svg" alt="email icon">
-            <input type="email" name="email" id="" placeholder="Email / Usuário / Matrícula" required />
+            <input v-model.trim="email" type="email" name="email" id="" placeholder="Email / Usuário / Matrícula" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/pass-icon.svg" alt="lock icon">
-            <input type="password" name="password" id="" placeholder="Password" required />
+            <input v-model.trim="password" type="password" name="password" id="" placeholder="Password" required />
           </div>
 
           <RouterLink>Esqueceu sua senha?</RouterLink>
