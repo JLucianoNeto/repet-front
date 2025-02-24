@@ -31,9 +31,6 @@ onMounted(getTodos);
                 <h3>{{ post.title }}</h3>
             </div>
 
-
-
-
         </div>
     </main>
 </template>
@@ -61,13 +58,12 @@ img {
 .container {
     background-color: burlywood;
     display: flex;
-    width: 35rem;
-    height: 35rem;
+    max-width: 65rem;
+    max-height: 65rem;
     text-align: center;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 7rem;
+    align-items:center;
+    justify-content: space-between;
     border-radius: 2rem;
 }
 
