@@ -1,98 +1,82 @@
-<template>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo">
-                <router-link to="/">Logo</router-link>
-            </div>
-            <ul class="nav-links">
-                <li><router-link to="/">Menu</router-link></li>
-                <li><router-link to="/login">Login</router-link></li>
-                <li><router-link to="/register">Registrar</router-link></li>
-                <li><router-link to="/contact">Contact</router-link></li>
-            </ul>
+<script setup>
+import { useRouter } from 'vue-router';
 
-        </div>
-    </nav>
-</template>
+const router = useRouter();
 
-<script>
-
+const goToLogin = () => {
+  router.push('/login');
+};
 </script>
+
+<template>
+  <nav class="navbar">
+    <a href="#" class="logo">REPET</a>
+    <div class="links-conteiner">
+      <ul class="nav-links">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#impressoes">IMPRESSÕES</a></li>
+        <li><a href="#">USUÁRIO</a></li>
+        <li><a href="#">SOBRE NÓS</a></li>
+      </ul>
+      <button class="login-button" @click="goToLogin">LOGIN</button>
+    </div>
+  </nav>
+</template>
 
 <style scoped>
 .navbar {
-    background-color: var(--green);
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid black;
+  background-color: white;
+  z-index: 3;
+  top: 0;
 }
-
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
 }
-
-.logo a {
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-}
-
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+  list-style: none;
+  display: flex;
+  font-size: 2.5rem;
+  gap: 3.25rem;
 }
-
-.nav-links li {
-    font-size: 18px;
-}
-
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: black;
 }
 
-.nav-links a:hover {
-    color: #004910;
+.nav-links a:hover{
+  text-decoration: underline;
 }
 
-.hamburger {
-    display: none;
-    cursor: pointer;
+.login-button {
+  background-color: black;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  font-size: 2rem;
 }
 
-.hamburger .bar {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
+.login-button:hover {
+  opacity: 0.6;
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: #333;
-        padding: 10px 0;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .hamburger {
-        display: block;
-    }
+.links-conteiner {
+  display: flex;
+  gap:1.75rem;
+  align-items: center;
 }
+
+
+
 </style>
