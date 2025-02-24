@@ -29,7 +29,7 @@ function handleLogin() {
             <input v-model.trim="password" type="password" name="password" id="" placeholder="Password" required />
           </div>
 
-          <RouterLink>Esqueceu sua senha?</RouterLink>
+          <RouterLink class="miss-pass">Esqueceu sua senha?</RouterLink>
           <button class="button" type="submit">Entrar</button>
 
           <p>Não tem conta?</p>
@@ -55,7 +55,7 @@ main {
 }
 
 div.container {
-  max-width: 60vw;
+  max-width: 70vw;
   max-height: 50vh;
   border-radius: 1rem;
   overflow: hidden;
@@ -79,6 +79,11 @@ div.left {
   align-items: center;
   justify-content: center;
   width: 40vw;
+}
+
+.miss-pass:hover{
+  text-decoration: underline;
+
 }
 
 h2 {
