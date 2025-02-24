@@ -36,31 +36,31 @@ export async function register(username, name, email, matricula, phone, password
 
   return response.data
 }
-export async function createModel(username, name, email, matricula, phone, password) {
-  const response = await api.post('/register', {
-    username,
-    name,
-    email,
-    matricula,
-    phone,
-    password,
-  })
+// export async function createModel(username, name, email, matricula, phone, password) {
+//   const response = await api.post('/register', {
+//     username,
+//     name,
+//     email,
+//     matricula,
+//     phone,
+//     password,
+//   })
 
-  if (response.status !== 202) {
-    return
-  }
+//   if (response.status !== 202) {
+//     return
+//   }
 
-  return response.data
-}
+//   return response.data
+// }
 
-export async function deleteModel(id) {
-  const response = await api.post('/delete', {
-    id,
-  })
+// export async function deleteModel(id) {
+//   const response = await api.post('/delete', {
+//     id,
+//   })
 
-  if (response.status !== 202) {
-    return
-  }
+//   if (response.status !== 202) {
+//     return
+//   }
 
-  return response.status
-}
+//   return response.status
+// }
