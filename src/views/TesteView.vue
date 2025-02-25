@@ -23,14 +23,52 @@ onMounted(getTodos);
 <template>
     <NavBar />
 
-    <main>
-        <table border="1px">
-            <tr v-for="post in posts">
-                <td v-for="element in post">{{ element }}</td>
+    <main class="main">
+        <div class="gallery">
 
-                <td>Excluir</td>
-                <td>Editar</td>
-            </tr>
-        </table>
+            <div v-for="post in posts" class="container">
+                <img src="@/assets/images/pass-icon.svg" alt="placeholder">
+                <h3>{{ post.title }}</h3>
+            </div>
+
+        </div>
     </main>
 </template>
+
+
+<style scoped>
+.main {
+    margin: 10rem 22rem;
+    display: flex;
+
+}
+
+img {
+    width: 15rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+}
+
+
+.container {
+    background-color: burlywood;
+    display: flex;
+    max-width: 65rem;
+    max-height: 65rem;
+    text-align: center;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-between;
+    border-radius: 2rem;
+}
+
+.conteudo {
+    flex-direction: row;
+
+}
+</style>
