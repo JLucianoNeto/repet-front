@@ -1,16 +1,36 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { register } from '@/api/index.js';
+import { ref } from 'vue';
+
+const email = ref()
+const password = ref()
+const name = ref()
+const username = ref()
+const matricula = ref()
+const birthdate = ref()
+const phone = ref()
+
+
+const router = useRouter()
+
+
+async function handleRegister() {
+  const response = await register(username.value, name.value, email.value, matricula.value, phone.value, password.value, birthdate.value);
+
+  console.log(response)
+
+  if (!response) return alert("Erro ao criar novo usuário");
+
+  // const userStore = useUserStore()
+
+  // userStore.authenticaded(response.access, response.refresh)
 
 
 
-function handleRegister() {
-  const response = register(username, name, email, matricula, phone, password);
-
-  if (!response) {
-    alert("Erro ao criar novo usuário");
-  }
-
+  await router.push({
+    name: 'login'
+  })
 }
 </script>
 
@@ -41,30 +61,37 @@ function handleRegister() {
         <form @submit.prevent="handleRegister()">
           <div class="inputs">
             <img src="@/assets/images/name-icon.svg" alt="email icon">
-            <input v-model.trim="name" type="text" name="name" id="" placeholder="Nome completo" required />
+            <input v-model.trim="name" type="text" name="name" placeholder="Nome completo" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/name-icon.svg" alt="username icon">
-            <input v-model.trim="username" type="text" name="username" id="" placeholder="Usuário" required />
+            <input v-model.trim="username" type="text" name="username" placeholder="Usuário" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/mail-icon.svg" alt="email icon">
-            <input v-model.trim="email" type="email" name="email" id="" placeholder="Email" required />
+            <input v-model.trim="email" type="email" name="email" placeholder="Email" required />
           </div>
+
           <div class="inputs">
             <img src="@/assets/images/book-icon.svg" alt="matricula icon">
-            <input v-model.trim="matricula" type="text" name="matricula" id="" placeholder="Matrícula" required />
+            <input v-model.trim="matricula" type="text" name="matricula" placeholder="Matrícula (Opcional)" />
           </div>
+
+          <div class="inputs">
+            <img src="@/assets/images/book-icon.svg" alt="matricula icon">
+            <input v-model.trim="birthdate" type="date" name="birthdate" placeholder="Data de nascimento" required />
+          </div>
+
           <div class="inputs">
             <img src="@/assets/images/phone-icon.svg" alt="phone icon">
-            <input v-model.trim="phone" type="text" name="phone" id="" placeholder="Telefone" required />
+            <input v-model.trim="phone" type="text" name="phone" placeholder="Telefone" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/pass-icon.svg" alt="lock icon">
             <input v-model.trim="password" type="password" name="password" id="" placeholder="Senha" required />
           </div>
 
-          <RouterLink class="button" to="register">Cadastrar</RouterLink>
+          <button class="button" type="submit">Cadastrar</button>
 
         </form>
 
@@ -84,8 +111,8 @@ main {
 }
 
 div.container {
-  max-width: 60vw;
-  max-height: 55vh;
+  max-width: 65vw;
+  max-height: 65vh;
   border-radius: 1rem;
   overflow: hidden;
   display: flex;

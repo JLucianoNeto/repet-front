@@ -1,31 +1,43 @@
 <script setup>
-import { RouterLink } from 'vue-router';
-import { api } from '@/api/index.js';
+import { RouterLink, useRoute } from 'vue-router';
+import { api, getModelById } from '@/api/index.js';
 import { onMounted, ref } from 'vue';
 import NavBar from '@/components/NavBar.vue';
+import { useUserStore } from '@/stores/userStore';
 
 
-const posts = ref();
 const name = ref();
 const description = ref();
 const privateCheck = ref();
 const credits = ref();
+const route = useRoute();
 
+const userStore = useUserStore()
 
 
 async function getTodos() {
-    const response = await api.get('https://jsonplaceholder.typicode.com/posts/1');
 
-    posts.value = response.data;
-
+    const response = await getModelById('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyLmlkIjozLCJpYXQiOjE3NDA0ODk1NzgsImV4cCI6MTc3MjAyNTU3OCwiaXNzIjoibG9jYWxob3N0OjU1MDAifQ.BgkeEpBHZEzLfG__rmMfPjd-wYNN0JuzZtAXI5zDU_o', route.params.id);
 
 
-    name.value = response.data.title;
-    description.value = response.data.title;
-    credits.value = response.data.title;
-    privateCheck.value = true;
+    if (!response) return alert("erro");
+
+    console.log(userStore.jwt)
+
+    name.value = response.data.name;
+    description.value = response.data.description;
+    credits.value = response.data.credits;
+
+    privateValue.value = response.data.private;
+
 }
 
+async function handleEdit() {
+
+    const response = await updateModel(userStore.jwt, route.params.id, name.value, description.value, credits.value, privateValue.value)
+
+    if (!response) return alert("Erro ao editar modelo");
+}
 
 onMounted(getTodos);
 </script>
@@ -33,35 +45,35 @@ onMounted(getTodos);
 
 <template>
     <NavBar />
-    <main>
+    <main class="provisorio">
 
-        <form action="">
+        <form @submit.prevent="handleEdit()">
 
 
             <div class="inputs">
                 <label for="name">Nome do modelo: </label>
-                <input v-model.trim="name" type="text" name="name" id="" required />
+                <input v-model.trim="name" type="text" name="name" required />
             </div>
             <div class="inputs">
                 <label for="description">Descrição do modelo: </label>
-                <textarea v-model.trim="description" name="description" id="" placeholder="" required></textarea>
+                <textarea v-model.trim="description" name="description" placeholder="" required></textarea>
             </div>
             <div class="inputs">
                 <label for="credits">Creditos do modelo: </label>
-                <textarea v-model.trim="credits" name="credits" id="" placeholder="" required></textarea>
+                <textarea v-model.trim="credits" name="credits" placeholder="" required></textarea>
             </div>
             <div class="inputs">
                 <label for="private">O modelo vai ser privado ?: </label>
-                <input v-model.trim="privateCheck" type="checkbox" name="private" id="" placeholder="" required />
+                <input v-model.trim="privateCheck" type="checkbox" name="private" placeholder="" required />
             </div>
-            <div class="inputs">
+            <!-- <div class="inputs">
                 <label for="modelImage">Selecione as imagens do seu modelo: </label>
                 <input type="file" id="myfile" name="modelImage" accept=".jpg, .jpeg, .png" required>
             </div>
             <div class="inputs">
                 <label for="myfile2">Selecione o arquivo do modelo (.stl): </label>
                 <input type="file" id="myfile2" name="model" accept=".stl" required>
-            </div>
+            </div> -->
             <RouterLink class="button" to="">Editar<br>modelo</RouterLink>
         </form>
 
@@ -76,6 +88,9 @@ form {
     flex-direction: column;
 }
 
+.provisorio {
+    margin-top: 25rem;
+}
 
 .button {
     text-transform: uppercase;

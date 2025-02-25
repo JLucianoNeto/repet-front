@@ -1,14 +1,31 @@
 <script setup>
-import { RouterLink } from 'vue-router';
-import {login} from  '@/api/index.js';
+import { RouterLink, useRouter } from 'vue-router';
+import { login } from '@/api/index.js';
+import { ref } from 'vue';
+import { useUserStore } from '@/stores/userStore';
 
 
-function handleLogin() {
-  const response = login(email,password);
+const email = ref()
+const password = ref()
 
-  if (!response){
-    alert("Email ou senha inválidos");
-  }
+const router = useRouter()
+const userStore = useUserStore()
+
+async function handleLogin() {
+  const response = await login(email.value, password.value);
+
+
+  if (!response) return alert("Email ou senha inválidos");
+
+
+
+  userStore.authenticaded(response.access, response.refresh)
+
+
+
+  router.push({
+    name: 'home'
+  })
 }
 
 </script>
@@ -22,14 +39,14 @@ function handleLogin() {
         <form @submit.prevent="handleLogin()">
           <div class="inputs">
             <img src="@/assets/images/mail-icon.svg" alt="email icon">
-            <input v-model.trim="email" type="email" name="email" id="" placeholder="Email / Usuário / Matrícula" required />
+            <input v-model.trim="email" type="email" name="email" placeholder="Email / Usuário / Matrícula" required />
           </div>
           <div class="inputs">
             <img src="@/assets/images/pass-icon.svg" alt="lock icon">
-            <input v-model.trim="password" type="password" name="password" id="" placeholder="Password" required />
+            <input v-model.trim="password" type="password" name="password" placeholder="Password" required />
           </div>
 
-          <RouterLink class="miss-pass">Esqueceu sua senha?</RouterLink>
+          <RouterLink class="miss-pass" to="">Esqueceu sua senha?</RouterLink>
           <button class="button" type="submit">Entrar</button>
 
           <p>Não tem conta?</p>
@@ -81,7 +98,7 @@ div.left {
   width: 40vw;
 }
 
-.miss-pass:hover{
+.miss-pass:hover {
   text-decoration: underline;
 
 }
