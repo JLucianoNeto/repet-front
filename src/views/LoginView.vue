@@ -1,8 +1,8 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router';
 import { login } from '@/api/index.js';
-import { ref } from 'vue';
 import { useUserStore } from '@/stores/userStore';
+import { ref } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
 
 
 const email = ref()
@@ -72,7 +72,7 @@ main {
 }
 
 div.container {
-  max-width: 70vw;
+  max-width: 60vw;
   max-height: 50vh;
   border-radius: 1rem;
   overflow: hidden;
