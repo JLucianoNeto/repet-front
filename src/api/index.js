@@ -13,9 +13,7 @@ export async function login(email, password) {
     password,
   })
 
-  if (response.status !== 202) {
-    return
-  }
+  if (response.status !== 202) return false
 
   return response.data
 }
@@ -30,9 +28,7 @@ export async function register(username, name, email, matricula, phone, password
     password,
   })
 
-  if (response.status !== 202) {
-    return
-  }
+  if (response.status !== 202) return false
 
   return response.data
 }
@@ -46,19 +42,41 @@ export async function createModel(username, name, email, matricula, phone, passw
     password,
   })
 
-  if (response.status !== 202) {
-    return
-  }
+  if (response.status !== 202) return false
 
   return response.data
 }
 
+export async function storeModel(name, description, credits, privateValue) {
+  const response = await api.post('/models', { name, description, credits, privateValue })
+
+  return {
+    success: response.status === 201,
+    data: response.data,
+  }
+}
+
+export async function getModelById(id) {
+  const response = await api.get(`/models/${id}`)
+
+  return response.status === 200 ? response.data : false
+}
+
+export async function updateModel(id, name, description, credits, privateValue) {
+  const response = await api.put(`/models/${id}`, { name, description, credits, privateValue })
+
+  return {
+    success: response.status === 202,
+    data: response.data,
+  }
+}
+
 export async function deleteModel(id) {
-  const response = await api.post('/delete', {
+  const response = await api.delete('/delete', {
     id,
   })
 
-  if (response.status !== 202) {
+  if (response.status !== 204) {
     return
   }
 
