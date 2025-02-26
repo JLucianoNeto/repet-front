@@ -36,24 +36,27 @@ const goToLogin = () => {
   z-index: 3;
   top: 0;
 }
+
 .logo {
   font-size: 3rem;
   font-weight: bold;
   color: black;
   text-decoration: none;
 }
+
 .nav-links {
   list-style: none;
   display: flex;
   font-size: 2.5rem;
   gap: 3.25rem;
 }
+
 .nav-links a {
   text-decoration: none;
   color: black;
 }
 
-.nav-links a:hover{
+.nav-links a:hover {
   text-decoration: underline;
 }
 
@@ -73,10 +76,9 @@ const goToLogin = () => {
 
 .links-conteiner {
   display: flex;
-  gap:1.75rem;
+  gap: 1.75rem;
   align-items: center;
 }
-
 
 
 </style>

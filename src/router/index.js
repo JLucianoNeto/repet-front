@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
-import TesteView from '@/views/TesteView.vue'
-import TesteEditView from '@/views/TesteEditView.vue'
 import TesteCriarModeloView from '@/views/TesteCriarModeloView.vue'
+import TesteEditView from '@/views/TesteEditView.vue'
+import TesteView from '@/views/TesteView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,17 +25,17 @@ const router = createRouter({
       component: RegisterView,
     },
     {
-      path: '/teste',
+      path: '/models',
       name: 'teste',
       component: TesteView,
     },
     {
-      path: '/testeEdit',
+      path: '/models/:id',
       name: 'testeEdit',
       component: TesteEditView,
     },
     {
-      path: '/testeModelo',
+      path: '/models/create',
       name: 'testeModelo',
       component: TesteCriarModeloView,
     },

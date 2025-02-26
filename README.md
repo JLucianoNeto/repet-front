@@ -1,35 +1,31 @@
-# repet-front
+# REPET
 
-This template should help get you started developing with Vue 3 in Vite.
+Este projeto web tem como objetivo incentivar a reciclagem, aumentando a quantidade de material reciclado por meio de um sistema de recompensas. Os usuários podem entregar materiais recicláveis em pontos de coleta e, em troca, acumular pontos na plataforma. Esses pontos podem ser utilizados para resgatar impressões 3D, tornando o processo de reciclagem mais atrativo e acessível. A iniciativa busca promover a sustentabilidade e a conscientização ambiental, utilizando a tecnologia como ferramenta para incentivar a participação ativa na reciclagem.
 
-## Recommended IDE Setup
+## Como usar
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Tecnologias
 
-## Customize configuration
+<div style="display: flex;">
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 
-## Project Setup
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-```sh
-npm install
-```
+- [Vue](https://vuejs.org/guide/introduction.html)
 
-### Compile and Hot-Reload for Development
+- [NodeJS](https://nodejs.org/api/all.html)
 
-```sh
-npm run dev
-```
+- [Github](https://docs.github.com/)
 
-### Compile and Minify for Production
+- [Git](https://git-scm.com/doc) 
 
-```sh
-npm run build
-```
+</div>
 
-### Lint with [ESLint](https://eslint.org/)
+## Github
 
-```sh
-npm run lint
-```
+<div align="center">
+
+Projeto feito por alunos do 5º semestre do curso de Ciência da Computação - IFCE - Campus Iguatu: <br>[João Pedro](https://github.com/Jphn), [Natan](https://github.com/natanpedrosateixeira), [Lucas](https://github.com/Lusca-F), [Bira](https://github.com/Ubiracyauri), [Breno](https://github.com/brenocd013), [Luciano](https://github.com/JLucianoNeto) e [Sávio](https://github.com).
+
+</div>
